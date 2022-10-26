@@ -1,16 +1,67 @@
 import React from "react";
+import { Image } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Favourites from "../screens/Favourites";
-import Pokedex from "../screens/Pokedex";
-import Account from "../screens/Account";
+import FavoritesNavigation from "./FavoritesNavigation";
+import PokedexNavigation from "./PokedexNavigation";
+import AccountNavigation from "./AccountNavigation";
+
 
 const Tab = createBottomTabNavigator();
 export default function Navigation() {
   return (
     <Tab.Navigator>
-      <Tab.Screen name="Favourites" component={Favourites} />
-      <Tab.Screen name="Pokedex" component={Pokedex} />
-      <Tab.Screen name="Account" component={Account} />
+      <Tab.Screen
+        name="Favourites"
+        component={FavoritesNavigation}
+        options={{
+          tabBarLabel: "Favoritos",
+          tabBarIcon: () => renderFavorito(),
+         
+        }}
+      />
+      <Tab.Screen
+        name="Pokedex"
+        component={PokedexNavigation}
+        options={{
+          tabBarLabel: "Pokebola",
+          tabBarIcon: () => renderPokeBall(),
+        }}
+      />
+      <Tab.Screen
+        name="Account"
+        component={AccountNavigation}
+        options={{
+          tabBarLabel: "Mi Cuenta",
+          tabBarIcon: () => renderUsuario(),
+        }}
+      />
     </Tab.Navigator>
+  );
+}
+
+function renderPokeBall() {
+  return (
+    <Image
+      source={require("../assets/pokebola.png")}
+      style={{ width: 75, height: 75, top: -17 }}
+    />
+  );
+}
+
+function renderFavorito() {
+  return (
+    <Image
+      source={require("../assets/favorito.png")}
+      style={{ width: 30, height: 30 }}
+    />
+  );
+}
+
+function renderUsuario() {
+  return (
+    <Image
+      source={require("../assets/hombre.png")}
+      style={{ width: 30, height: 30 }}
+    />
   );
 }
