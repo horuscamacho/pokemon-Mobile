@@ -28,7 +28,7 @@ export default function Navigation() {
         }}
       />
       <Tab.Screen
-        name="Account"
+        name="AccountNavigation"   //AQUI CAMBIE ESTO OJO
         component={AccountNavigation}
         options={{
           tabBarLabel: "Mi Cuenta",
