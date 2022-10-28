@@ -5,6 +5,8 @@ import { getPokemonDetailsAPI } from "../api/pokemon";
 import Header from "../components/Pokemon/Header";
 import Type from "../components/Pokemon/Type";
 import Stats from "../components/Pokemon/Stats";
+import Favourites from '../components/Pokemon/Favourites' 
+import useAuth from "../hooks/useAuth";
 
 export default function Pokemon(props) {
   const {
@@ -12,10 +14,10 @@ export default function Pokemon(props) {
     navigation,
   } = props;
   const [pokemon, setPokemon] = useState(null);
-
+  const { auth } = useAuth()
   useEffect(() => {
     navigation.setOptions({
-      headerRight: () => null,
+      headerRight: () => auth && <Favourites id={pokemon?.id} />,
       headerLeft: () => (
         <Icon
           name="arrow-left"
@@ -26,7 +28,7 @@ export default function Pokemon(props) {
         />
       ),
     });
-  }, [navigation, params]);
+  }, [navigation, params, pokemon, auth]);
 
   useEffect(() => {
     (async () => {
